@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    // Fixed update is called 50 times per second
+    void FixedUpdate()
     {
         Move();
 
@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     void Move(){
         float walkDir = Input.GetAxis("Horizontal");
         if (math.abs(walkDir) > 0.1f){
+            // if walking dir is negative, we are walking right
             isFacingRight = walkDir < 0;
         }
 
@@ -55,6 +56,8 @@ public class PlayerController : MonoBehaviour
         if(transform.position.x > rightBound && walkDir > 0){
             return;
         }
+
+        //divide by 50 for 50 frames per second
         transform.Translate(Vector3.right * walkDir * walkSpeed / 50);
     }
 
