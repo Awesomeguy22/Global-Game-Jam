@@ -19,13 +19,24 @@ public abstract class Minigame : MonoBehaviour
         
     }
 
-    public void RequestMinigame() {
-        _enabled = true;
+    //return true if minigame can be activated, false otherwise
+    public bool RequestMinigame() {
+        if(!_enabled){
+            _enabled = true;
+            ActivateMinigame();
+            return true;
+        } else {
+            return false;
+        }
     }
 
+    //When the player is next to the minigame and is locked into completing it
     public abstract void StartMinigame();
 
+    //Make the Minigame active so the player must finish it
     public abstract void ActivateMinigame();
+
+    //
     public abstract void EndMinigame();
 
 }

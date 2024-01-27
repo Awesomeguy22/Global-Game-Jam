@@ -6,18 +6,19 @@ using UnityEngine;
 
 public class TvMinigame : Minigame
 {
-    bool minigameActivated = false;
+    
+    //bool _enabled = false;
 
     //how long the game will last before you fail
-    [SerializeField] float miniGameDuration = 5.0f;
+    [SerializeField] float miniGameDuration = 10f;
     float failTimer;
 
 
     //time the correct channel must be held to win
-    [SerializeField] float maintainChannelTime = 0.3f;
+    [SerializeField] float maintainChannelTime = 1.0f;
 
     float succeedTimer;
-    [SerializeField] float staticTransitionTime = 0.5f;
+    //[SerializeField] float staticTransitionTime = 0.5f;
 
     [SerializeField] GameObject channelHolder;
 
@@ -26,9 +27,9 @@ public class TvMinigame : Minigame
     [SerializeField] GameObject TVStatic;
 
     //.gameobject to disable
-    [SerializeField] SpriteRenderer[] channels;
+    SpriteRenderer[] channels;
 
-    [SerializeField] SpriteRenderer[] desiredChannels;
+    SpriteRenderer[] desiredChannels;
     
 
     int activeChannelIndex = 0;
@@ -50,14 +51,20 @@ public class TvMinigame : Minigame
         }
         
         TVStatic.SetActive(true);
+
+        //For debugging purposes activate tv at the start
+        ActivateMinigame();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (minigameActivated) {
-            failTimer -= Time.deltaTime;
+        //only run minigame logic when it is active
+        if (!_enabled) {
+           return;
         }
+
+        failTimer -= Time.deltaTime;
         
         if (failTimer < 0){
             //Trigger a loss
@@ -80,7 +87,9 @@ public class TvMinigame : Minigame
     }
 
     void OnMouseDown(){
-        //Debug.Log("Clicked the TV");
+        //TODO
+        //change the player sprite
+        
         if(TVStatic.activeSelf){
             ChangeChannel();
             TVStatic.SetActive(false);
@@ -96,34 +105,45 @@ public class TvMinigame : Minigame
         channels[activeChannelIndex].gameObject.SetActive(true);
     }
 
-
-
+    [ContextMenu("ActivateMinigame")]
     public override void ActivateMinigame()
     {
-        minigameActivated = true;
+        _enabled = true;
+        //reset both timers
         failTimer = miniGameDuration;
+        succeedTimer = maintainChannelTime;
+
         //The player will switch to a random channel to start
         activeChannelIndex = Random.Range(0,channels.Length);
 
         foreach (SpriteRenderer channel in channels){
             channel.gameObject.SetActive(false);
         }
-
-        desiredChannelIndex = Random.Range(0,channels.Length);
+        channels[activeChannelIndex].gameObject.SetActive(true);
+        do {
+            desiredChannelIndex = Random.Range(0,channels.Length);
+        } while (desiredChannelIndex == activeChannelIndex);
+        //if the target is the current channel, regenerate a number
+        
         desiredChannels[desiredChannelIndex].gameObject.SetActive(true);
 
-        TVStatic.SetActive(false);
+        TVStatic.SetActive(true);
 
     }
 
     public override void EndMinigame()
     {
         Debug.Log("Tv minigame Complete");
-        minigameActivated = false;
+        _enabled = false;
+        desiredChannels[desiredChannelIndex].gameObject.SetActive(false);
+
     }
 
     public override void StartMinigame()
     {
 
     }
+
+    
+
 }
