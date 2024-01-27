@@ -13,6 +13,10 @@ public class Interactable : MonoBehaviour
     public bool playingMinigame = false;
     bool playerIsNear = false;
 
+    PlayerController playerController;
+    void Start(){
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -22,11 +26,22 @@ public class Interactable : MonoBehaviour
         }
 
         if (playerIsNear && Input.GetKeyDown(KeyCode.E)){
-            //playing minigame until the minigame sets this to false
-            playingMinigame = true;
-
+            StartMinigame();
         }
 
+    }
+
+    //minigames will read playingMinigame and wait till a true result is found
+    void StartMinigame(){
+        Debug.Log("Minigame started!");
+        playingMinigame = true;
+        playerController.canWalk = false;
+    }
+
+    //minigames will call FinishMinigame when they conclude
+    public void FinishMinigame(){
+        playingMinigame = false;
+        playerController.canWalk = true;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// False when in a minigame
     /// </summary>
-    bool canWalk = true;
+    public bool canWalk = true;
 
     /// <summary>
     /// Used for flipping the sprite
@@ -18,12 +18,12 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Furthest left the player can go in world coordinates
     /// </summary>
-    public float leftBound = -5;
+    [SerializeField] float leftBound = -5;
 
     /// <summary>
     /// Furthest right the player can go in world coordinates
     /// </summary>
-    public float rightBound = 5;
+    [SerializeField] float rightBound = 5;
 
     /// <summary>
     /// units per second

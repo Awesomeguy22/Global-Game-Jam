@@ -10,7 +10,6 @@ public class TaskController : MonoBehaviour
     public float currentDifficulty = 1;
     float timeTillNextTask;
 
-    [SerializeField] float taskTimeInterval = 5.0f;
     [SerializeField] float randomVariance = 1.0f;
 
     [SerializeField] GameObject[] tasks;
