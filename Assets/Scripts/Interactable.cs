@@ -8,7 +8,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] GameObject buttonprompt;
     
     //The minigame object will activate when interacted with
-    public GameObject minigame;
+    public Minigame minigame;
 
     public bool playingMinigame = false;
     bool playerIsNear = false;
@@ -26,23 +26,14 @@ public class Interactable : MonoBehaviour
         }
 
         if (playerIsNear && Input.GetKeyDown(KeyCode.E)){
-            StartMinigame();
+            Debug.Log("Minigame started!");
+            playingMinigame = true;
+            playerController.canWalk = false;
+            minigame.StartMinigame();
         }
 
     }
 
-    //minigames will read playingMinigame and wait till a true result is found
-    void StartMinigame(){
-        Debug.Log("Minigame started!");
-        playingMinigame = true;
-        playerController.canWalk = false;
-    }
-
-    //minigames will call FinishMinigame when they conclude
-    public void FinishMinigame(){
-        playingMinigame = false;
-        playerController.canWalk = true;
-    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {

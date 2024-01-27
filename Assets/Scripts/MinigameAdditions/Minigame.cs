@@ -20,6 +20,7 @@ public abstract class Minigame : MonoBehaviour
 
     public abstract void StartMinigame();
 
+    public abstract void ActivateMinigame();
     public abstract void EndMinigame();
-    
+
 }
