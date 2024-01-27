@@ -34,27 +34,25 @@ public class TvMinigame : Minigame
     int activeChannelIndex = 0;
     int desiredChannelIndex;
 
-    AudioSource staticSound;
 
     // Start is called before the first frame update
     void Awake()
     {
-        staticSound = GetComponent<AudioSource>();
 
         //getcomponentsinChildren also gets the root object, so I need to filter it out
         channels = channelHolder.GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer spriteRenderer in channels){
             spriteRenderer.gameObject.SetActive(false);
         }
+        channels[0].gameObject.SetActive(true);
 
         desiredChannels = desiredChannelHolder.GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer spriteRenderer in desiredChannels){
             spriteRenderer.gameObject.SetActive(false);
-            spriteRenderer.gameObject.GetComponent<AudioSource>().Play();
+            
         }
         
-        TVStatic.SetActive(true);
-        staticSound.Play();
+        //TVStatic.SetActive(true);
 
         //For debugging purposes activate tv at the start
         //ActivateMinigame();
@@ -97,10 +95,8 @@ public class TvMinigame : Minigame
         if(TVStatic.activeSelf){
             ChangeChannel();
             TVStatic.SetActive(false);
-            staticSound.Stop();
         } else {
             TVStatic.SetActive(true);
-            staticSound.Play();
             channels[activeChannelIndex].gameObject.SetActive(false);
 
         }
@@ -135,7 +131,6 @@ public class TvMinigame : Minigame
         desiredChannels[desiredChannelIndex].gameObject.SetActive(true);
 
         TVStatic.SetActive(true);
-        staticSound.Play();
 
     }
 
