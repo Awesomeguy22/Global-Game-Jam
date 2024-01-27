@@ -34,6 +34,8 @@ public class TvMinigame : Minigame
     int activeChannelIndex = 0;
     int desiredChannelIndex;
 
+    [SerializeField] Interactable interactable; 
+
 
     // Start is called before the first frame update
     void Awake()
