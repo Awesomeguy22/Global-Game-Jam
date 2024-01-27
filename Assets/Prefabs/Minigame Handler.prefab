@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3064651637691175698}
   - component: {fileID: 3852462603619534006}
   m_Layer: 0
-  m_Name: Minigame
+  m_Name: Minigame Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,6 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonprompt: {fileID: 3677339182929322928}
+  minigame: {fileID: 0}
+  playingMinigame: 0
 --- !u!1 &8432164056136679611
 GameObject:
   m_ObjectHideFlags: 0
