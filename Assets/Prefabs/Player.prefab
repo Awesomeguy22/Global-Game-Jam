@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b9a8990dbce9941b577c7eba0223c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftBound: -5
-  rightBound: 5
-  walkSpeed: 1
+  leftBound: -7.9
+  rightBound: 7.9
+  walkSpeed: 1.5
   graphics: {fileID: 8059193567204350397}
 --- !u!61 &1739480209222690092
 BoxCollider2D:
