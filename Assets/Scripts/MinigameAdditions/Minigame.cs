@@ -30,10 +30,14 @@ public abstract class Minigame : MonoBehaviour
         }
     }
 
-    //When the player is next to the minigame and is locked into completing it
+    /// <summary>
+    /// When the player is next to the minigame and is locked into completing it
+    /// </summary>
     public abstract void StartMinigame();
 
-    //Make the Minigame active so the player must finish it
+    /// <summary>
+    /// Make the Minigame active so the player must finish it
+    /// </summary>
     public abstract void ActivateMinigame();
 
     //

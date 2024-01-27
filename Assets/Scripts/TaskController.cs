@@ -20,7 +20,7 @@ public class TaskController : MonoBehaviour
         babyController = gameObject.GetComponent<BabyController>();
     }
 
-    static void AddTask(Minigame minigameController) {
+    public static void RegisterMinigame(Minigame minigameController) {
         tasks.Add(minigameController);
     }
 
