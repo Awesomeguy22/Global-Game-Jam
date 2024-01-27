@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,7 +35,7 @@ public class BabyController : MonoBehaviour
 
         timer -= Time.deltaTime;
         if (timer < 0){
-            BabyController.Lose();
+            BabyController.Lose("The Parents came home (global timer ran out)");
         }
     }
 
@@ -47,8 +48,9 @@ public class BabyController : MonoBehaviour
     }
 
     //Tasks can call this when they expire to trigger a loss
-    public static void Lose(){
+    public static void Lose(String message){
         Debug.Log("You lost");
+        Debug.Log(message);
         //Display loss message
         //restart current scene
     }
