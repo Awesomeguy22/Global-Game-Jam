@@ -34,12 +34,12 @@ public class TvMinigame : Minigame
     int activeChannelIndex = 0;
     int desiredChannelIndex;
 
-    AudioSource audioSource;
+    AudioSource staticSound;
 
     // Start is called before the first frame update
     void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        staticSound = GetComponent<AudioSource>();
 
         //getcomponentsinChildren also gets the root object, so I need to filter it out
         channels = channelHolder.GetComponentsInChildren<SpriteRenderer>();
@@ -50,12 +50,14 @@ public class TvMinigame : Minigame
         desiredChannels = desiredChannelHolder.GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer spriteRenderer in desiredChannels){
             spriteRenderer.gameObject.SetActive(false);
+            spriteRenderer.gameObject.GetComponent<AudioSource>().Play();
         }
         
         TVStatic.SetActive(true);
+        staticSound.Play();
 
         //For debugging purposes activate tv at the start
-        ActivateMinigame();
+        //ActivateMinigame();
     }
 
     // Update is called once per frame
@@ -95,16 +97,17 @@ public class TvMinigame : Minigame
         if(TVStatic.activeSelf){
             ChangeChannel();
             TVStatic.SetActive(false);
-            audioSource.Stop();
+            staticSound.Stop();
         } else {
             TVStatic.SetActive(true);
-            audioSource.Play();
+            staticSound.Play();
+            channels[activeChannelIndex].gameObject.SetActive(false);
 
         }
     }
 
     void ChangeChannel(){
-        channels[activeChannelIndex].gameObject.SetActive(false);
+        
         activeChannelIndex = (activeChannelIndex + 1) % channels.Length;
         channels[activeChannelIndex].gameObject.SetActive(true);
     }
@@ -132,7 +135,7 @@ public class TvMinigame : Minigame
         desiredChannels[desiredChannelIndex].gameObject.SetActive(true);
 
         TVStatic.SetActive(true);
-        audioSource.Play();
+        staticSound.Play();
 
     }
 
