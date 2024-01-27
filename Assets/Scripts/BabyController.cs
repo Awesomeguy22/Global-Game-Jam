@@ -9,6 +9,7 @@ public class BabyController : MonoBehaviour
     //Counting down from 3 minutes
     public float timer = 180;
     public float currentDifficulty = 1;
+    //Difficulty is measured in time before the next task appears
     [SerializeField]float difficultylvl0 = 10;
     [SerializeField]float milstone1 = 25;
     [SerializeField]float difficultylvl1 = 7.5f;

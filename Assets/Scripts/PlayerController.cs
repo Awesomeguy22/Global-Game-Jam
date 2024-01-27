@@ -44,9 +44,12 @@ public class PlayerController : MonoBehaviour
     // Fixed update is called 50 times per second
     void FixedUpdate()
     {
-        Move();
+        if (canWalk){
+            Move();
 
-        HandleAnimation();
+            HandleAnimation();
+        }
+
     }
 
     void Move(){
@@ -56,9 +59,6 @@ public class PlayerController : MonoBehaviour
             isFacingRight = walkDir < 0;
         }
 
-        if(!canWalk){
-            return;
-        }
         //past left wall and trying to walk left
         if(transform.position.x < leftBound && walkDir < 0){
             return;
