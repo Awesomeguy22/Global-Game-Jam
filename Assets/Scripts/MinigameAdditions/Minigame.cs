@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Minigame : MonoBehaviour
 {
+    protected bool _enabled = false;
 
 
     // Start is called before the first frame update
@@ -16,6 +17,10 @@ public abstract class Minigame : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void RequestMinigame() {
+        _enabled = true;
     }
 
     public abstract void StartMinigame();
