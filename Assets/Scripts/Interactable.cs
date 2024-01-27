@@ -10,7 +10,7 @@ public class Interactable : MonoBehaviour
     //The minigame object will activate when interacted with
     public GameObject minigame;
 
-    public bool playingMinigame = true;
+    public bool playingMinigame = false;
     bool playerIsNear = false;
 
 
