@@ -12,12 +12,16 @@ public class TaskController : MonoBehaviour
 
     [SerializeField] float randomVariance = 1.0f;
 
-    [SerializeField] GameObject[] tasks;
+    public static List<Minigame> tasks = new();
     BabyController babyController;
     // Start is called before the first frame update
     void Start()
     {
         babyController = gameObject.GetComponent<BabyController>();
+    }
+
+    static void AddTask(Minigame minigameController) {
+        tasks.Add(minigameController);
     }
 
     // Update is called once per frame
@@ -26,22 +30,12 @@ public class TaskController : MonoBehaviour
         currentDifficulty = babyController.currentDifficulty;
         if (timeTillNextTask < 0){
             //pick a task to activate at random
-            int taskToGenerate = UnityEngine.Random.Range(0,tasks.Length);
-            GenerateTask(taskToGenerate);
+            int taskToGenerate = UnityEngine.Random.Range(0,tasks.Count);
+            tasks[taskToGenerate].RequestMinigame();
             //Set the time till next task to a 
             timeTillNextTask = currentDifficulty + UnityEngine.Random.Range(0,randomVariance);
         }
 
         timeTillNextTask -= Time.deltaTime;
-    }
-
-    void GenerateTask(int taskIndex) {
-        //fill this in with task specific behaviour
-        switch(taskIndex){
-            case 1:
-            break;
-
-
-        }
     }
 }
