@@ -25,7 +25,8 @@ public class PhoneMinigame : Minigame
     {
         audio = GetComponent<AudioSource>();
         TaskController.RegisterMinigame(this);
-        ActivateMinigame();
+        //ActivateMinigame();
+        RequestMinigame();
     }
 
     // Update is called once per frame

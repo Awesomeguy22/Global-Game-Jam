@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Minigame : MonoBehaviour
 {
     protected bool _enabled = false;
+    public GameObject alertObj;
 
 
     // Start is called before the first frame update
@@ -24,6 +25,9 @@ public abstract class Minigame : MonoBehaviour
         if(!_enabled){
             _enabled = true;
             ActivateMinigame();
+            var size = GetComponent<SpriteRenderer>().size;
+            print(size);
+            Instantiate(alertObj).transform.position = transform.position + new Vector3(0, transform.localScale.y * size.y, 0);
             return true;
         } else {
             return false;
