@@ -5,22 +5,34 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //False when in a minigame
+    /// <summary>
+    /// False when in a minigame
+    /// </summary>
     bool canWalk = true;
 
-    //Used for flipping the sprite
+    /// <summary>
+    /// Used for flipping the sprite
+    /// </summary>
     bool isFacingRight = true;
 
-    //Furthest left the player can go in world coordinates
+    /// <summary>
+    /// Furthest left the player can go in world coordinates
+    /// </summary>
     public float leftBound = -5;
 
-    //Furthest right the player can go in world coordinates
+    /// <summary>
+    /// Furthest right the player can go in world coordinates
+    /// </summary>
     public float rightBound = 5;
 
-    //units per second
+    /// <summary>
+    /// units per second
+    /// </summary>
     public float walkSpeed = 0.5f;
 
-    //Change later when proper animation
+    /// <summary>
+    /// Change later when proper animation
+    /// </summary>
     [SerializeField] Transform graphics;
     
     // Start is called before the first frame update
