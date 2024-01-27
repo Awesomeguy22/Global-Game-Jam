@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    bool isWalking = true;
+    //False when in a minigame
+    bool canWalk = true;
+
+    //Used for flipping the sprite
     bool isFacingRight = true;
+
+    //Furthest left the player can go in world coordinates
     public float leftBound = -5;
+
+    //Furthest right the player can go in world coordinates
     public float rightBound = 5;
 
     //units per second
@@ -36,7 +43,7 @@ public class PlayerController : MonoBehaviour
             isFacingRight = walkDir < 0;
         }
 
-        if(!isWalking){
+        if(!canWalk){
             return;
         }
         //past left wall and trying to walk left

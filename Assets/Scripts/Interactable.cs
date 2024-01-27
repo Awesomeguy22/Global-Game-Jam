@@ -24,9 +24,8 @@ public class Interactable : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player")) {
             playerIsNear = true;
-
         }
-    } 
+    }
 
     void OnTriggerExit2D(Collider2D collision){
         if (collision.gameObject.tag.Equals("Player")) {
