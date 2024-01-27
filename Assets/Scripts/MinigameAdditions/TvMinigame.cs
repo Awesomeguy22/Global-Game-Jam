@@ -11,13 +11,13 @@ public class TvMinigame : Minigame
 
     //how long the game will last before you fail
     [SerializeField] float miniGameDuration = 10f;
-    float failTimer;
+    [SerializeField]float failTimer;
 
 
     //time the correct channel must be held to win
     [SerializeField] float maintainChannelTime = 1.0f;
 
-    float succeedTimer;
+    [SerializeField]float succeedTimer;
     //[SerializeField] float staticTransitionTime = 0.5f;
 
     [SerializeField] GameObject channelHolder;
@@ -31,13 +31,15 @@ public class TvMinigame : Minigame
 
     SpriteRenderer[] desiredChannels;
     
-
     int activeChannelIndex = 0;
     int desiredChannelIndex;
+
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
 
         //getcomponentsinChildren also gets the root object, so I need to filter it out
         channels = channelHolder.GetComponentsInChildren<SpriteRenderer>();
@@ -76,7 +78,7 @@ public class TvMinigame : Minigame
         }
 
         //if on the right channel
-        if (desiredChannelIndex == activeChannelIndex) {
+        if (desiredChannelIndex == activeChannelIndex && !TVStatic.activeSelf) {
             succeedTimer -= Time.deltaTime;
             
         } else{
@@ -93,8 +95,10 @@ public class TvMinigame : Minigame
         if(TVStatic.activeSelf){
             ChangeChannel();
             TVStatic.SetActive(false);
+            audioSource.Stop();
         } else {
             TVStatic.SetActive(true);
+            audioSource.Play();
 
         }
     }
@@ -128,6 +132,7 @@ public class TvMinigame : Minigame
         desiredChannels[desiredChannelIndex].gameObject.SetActive(true);
 
         TVStatic.SetActive(true);
+        audioSource.Play();
 
     }
 
