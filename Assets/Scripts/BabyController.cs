@@ -28,8 +28,6 @@ public class BabyController : MonoBehaviour
     [SerializeField] float endCountDown = 10f;
     [SerializeField] GameObject[] babyfaces;
 
-    [SerializeField] GameObject stillBaby;
-    [SerializeField] GameObject dancingBaby;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,12 +58,8 @@ public class BabyController : MonoBehaviour
         Debug.Log("You Win!");
         countingDown = true;
 
-        //change scene
-        //laugh.mp3
-        stillBaby.SetActive(false);
-        dancingBaby.SetActive(true);
-        //play cutscene
-        //display score
+        // TODO: shouldn't the babyController be attached to the baby object?
+        GameObject.FindGameObjectWithTag("Baby").GetComponent<Animator>().Play("Laugh");
     }
 
     //Tasks can call this when they expire to trigger a loss
