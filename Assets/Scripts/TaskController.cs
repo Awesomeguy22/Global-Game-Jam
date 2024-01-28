@@ -64,9 +64,13 @@ public class TaskController : MonoBehaviour
                 //if the minigame is enabled, count it down
                 minigameTimers[i] -= Time.deltaTime;
                 if (minigameTimers[i] < 0){
-                    BabyController.Lose("Lost due to minigame #" + i);
+                    BabyController.Lose("Lost due to minigame" + i);
                 }
             }
+
+            if (babyController.hasWon){
+                tasks[i].EndMinigame();
+            } 
 
 
         }

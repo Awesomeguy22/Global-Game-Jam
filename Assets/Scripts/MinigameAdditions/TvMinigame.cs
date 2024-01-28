@@ -10,12 +10,12 @@ public class TvMinigame : Minigame
     //bool _enabled = false;
 
     //how long the game will last before you fail
-    [SerializeField] float miniGameDuration = 10f;
-    [SerializeField]float failTimer;
+    //[SerializeField] float miniGameDuration = 10f;
+    //[SerializeField]float failTimer;
 
 
     //time the correct channel must be held to win
-    [SerializeField] float maintainChannelTime = 1.0f;
+    [SerializeField] float maintainChannelTime = 0.5f;
 
     [SerializeField]float succeedTimer;
     //[SerializeField] float staticTransitionTime = 0.5f;
@@ -68,13 +68,13 @@ public class TvMinigame : Minigame
         if (!_enabled) {
            return;
         }
-
+        /*
         failTimer -= Time.deltaTime;
         
         if (failTimer < 0){
             //Trigger a loss
             BabyController.Lose("Lost due to tv minigame");
-        }
+        } */
 
         if (succeedTimer < 0){
             EndMinigame();
@@ -121,7 +121,7 @@ public class TvMinigame : Minigame
     {
         _enabled = true;
         //reset both timers
-        failTimer = miniGameDuration;
+        //failTimer = miniGameDuration;
         succeedTimer = maintainChannelTime;
 
         //The player will switch to a random channel to start

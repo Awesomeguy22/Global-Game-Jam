@@ -48,16 +48,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laughterMeter: 0
   currentDifficulty: 1
-  difficultylvl0: 7
+  difficultylvl0: 5
   milstone1: 4
-  difficultylvl1: 5
+  difficultylvl1: 2.5
   milstone2: 8
-  difficultylvl2: 4
+  difficultylvl2: 1.5
   milstone3: 12
-  difficultylvl3: 3
+  difficultylvl3: 1
   milstone4: 20
   hasWon: 0
-  endCountDown: 7.5
+  endCountDown: 4
   babyfaces:
   - {fileID: 0}
   - {fileID: 0}

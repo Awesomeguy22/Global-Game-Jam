@@ -56,10 +56,10 @@ MonoBehaviour:
   - {fileID: 8649451107978705254, guid: f6fd2beed2856d742bfea831970407bd, type: 3}
   - {fileID: 8854523563242531475, guid: 9365db90253f4a5488eccd9aab3b8e71, type: 3}
   IndicatorPositions:
-  - {x: 3.5, y: -0.75, z: 0}
-  - {x: 5, y: -0.75, z: 0}
-  - {x: 6.5, y: -0.75, z: 0}
-  - {x: 8, y: -0.75, z: 0}
+  - {x: 5.55, y: -0.75, z: 0}
+  - {x: 6.45, y: -0.75, z: 0}
+  - {x: 7.35, y: -0.75, z: 0}
+  - {x: 8.25, y: -0.75, z: 0}
   interactable: {fileID: 7513849662282326008}
 --- !u!82 &6784894296967229607
 AudioSource:
@@ -184,7 +184,7 @@ Transform:
   m_GameObject: {fileID: 5636191004436004012}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.78, y: 4.45, z: 0}
+  m_LocalPosition: {x: 0.45, y: 3.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

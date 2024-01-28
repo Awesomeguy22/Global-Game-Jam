@@ -25,7 +25,7 @@ public class BabyMinigame : Minigame
 
     [SerializeField] Interactable interactable;
 
-    [ContextMenu("ActivateMinigame")]
+    //[ContextMenu("ActivateMinigame")]
     public override void ActivateMinigame()
     {
         //Debug.Log("Baby Task Starting");

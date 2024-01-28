@@ -32,7 +32,8 @@ public abstract class Minigame : MonoBehaviour
             if (TryGetComponent<SpriteRenderer>(out SpriteRenderer spriteRenderer)){
                 size = spriteRenderer.size;
             } else {
-                size = new Vector2(1,1);
+                //only for baby minigame which has no sprite
+                size = new Vector2(1,4.2f);
             }
             
             alertObject = Instantiate(alertFab);
