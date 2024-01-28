@@ -5,6 +5,7 @@ using UnityEngine;
 public class Thermostat : Minigame
 {
     [SerializeField] private Animator baby;
+    [SerializeField] private Interactable interactable;
     
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,8 @@ public class Thermostat : Minigame
     }
 
     private void OnMouseDown() {
-        EndMinigame();
+        if (interactable.playerIsNear && _enabled)
+            EndMinigame();
     }
 
     public override void ActivateMinigame() {
