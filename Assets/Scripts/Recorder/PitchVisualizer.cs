@@ -15,9 +15,18 @@ public class PitchVisualizer : MonoBehaviour
 
     public float estimateRate = 30;
 
-    void Start() {
+    public string CurrentNote {  get; private set; }
+    public static readonly string[] names = {
+        "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"
+    };
+
+    public void Begin() {
         // Call at regular intervals (Update is too fast)
         InvokeRepeating(nameof(UpdateVisualizer), 0, 1.0f / estimateRate);
+    }
+
+    public void End() {
+        CancelInvoke(nameof(UpdateVisualizer));
     }
 
     void UpdateVisualizer() {
@@ -50,7 +59,8 @@ public class PitchVisualizer : MonoBehaviour
             lineFrequency.SetPosition(1, new Vector3(position, -1, 0));
 
             marker.position = new Vector3(position, 0, 0);
-            textFrequency.text = string.Format("{0}\n{1:0.0} Hz", GetNameFromFrequency(frequency), frequency);
+            CurrentNote = GetNameFromFrequency(frequency);
+            textFrequency.text = string.Format("{0}\n{1:0.0} Hz", CurrentNote, frequency);
         }
 
         // Lower limit/upper limit frequency
@@ -59,11 +69,8 @@ public class PitchVisualizer : MonoBehaviour
     }
 
     // Frequency → note name
-    string GetNameFromFrequency(float frequency) {
+    public string GetNameFromFrequency(float frequency) {
         var noteNumber = Mathf.RoundToInt(12 * Mathf.Log(frequency / 440) / Mathf.Log(2) + 69);
-        string[] names = {
-             "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"
-         };
         return names[noteNumber % 12];
     }
 
