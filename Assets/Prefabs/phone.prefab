@@ -309,6 +309,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 48d760b90e01f504f8a7ed45e9fa3793, type: 2}
   - {fileID: 11400000, guid: 0fbde6e4c8f1d4e43b3037a185a547d4, type: 2}
   - {fileID: 11400000, guid: 4dc52dc950c0173408a1537a6e4caa44, type: 2}
+  - {fileID: 11400000, guid: ff65deddcb90fbf4982723a94fbc576a, type: 2}
   buttonContainer: {fileID: 0}
 --- !u!61 &5965786228330489307
 BoxCollider2D:
