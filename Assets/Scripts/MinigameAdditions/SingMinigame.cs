@@ -4,32 +4,45 @@ using UnityEngine;
 
 public class SingMinigame : Minigame
 {
-    private AudioPitchEstimator pitchEstimator;
-    private AudioSource microphone;
+    [SerializeField] private GameObject ui;
+    [SerializeField] private PitchVisualizer controller;
+
+    private string targetNote;
 
     // Start is called before the first frame update
     void Start()
     {
-        pitchEstimator = GetComponent<AudioPitchEstimator>();
-        microphone = GetComponent<AudioSource>();
+        TaskController.RegisterMinigame(this);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        print(pitchEstimator.Estimate(microphone));
+    private void Update() {
+        if (_enabled) {
+            if (controller.CurrentNote == targetNote) {
+                EndMinigame();
+            }
+        }
     }
 
     public override void ActivateMinigame() {
-        throw new System.NotImplementedException();
+        // No-op
+    }
+
+    private void OnMouseDown() {
+        if (_enabled)
+            StartMinigame();
     }
 
     public override void StartMinigame() {
-        throw new System.NotImplementedException();
+        print("starting sound minigame...");
+        ui.SetActive(true);
+        controller.Begin();
+        targetNote = PitchVisualizer.names[Random.Range(0, PitchVisualizer.names.Length)];
+        print("target: " + targetNote);
     }
 
     public override void EndMinigame() {
         base.EndMinigame();
-        //TODO
+        ui.SetActive(false);
+        controller.End();
     }
 }
