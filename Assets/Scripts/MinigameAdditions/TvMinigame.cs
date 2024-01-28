@@ -98,15 +98,18 @@ public class TvMinigame : Minigame
     void OnMouseDown(){
         //TODO
         //change the player sprite
-        
-        if(TVStatic.activeSelf){
-            ChangeChannel();
-            TVStatic.SetActive(false);
-        } else {
-            TVStatic.SetActive(true);
-            channels[activeChannelIndex].gameObject.SetActive(false);
+        Debug.Log("Clicked the TV");
+        if(interactable.playerIsNear){
+            if(TVStatic.activeSelf){
+                ChangeChannel();
+                TVStatic.SetActive(false);
+            } else {
+                TVStatic.SetActive(true);
+                channels[activeChannelIndex].gameObject.SetActive(false);
 
+            }
         }
+
     }
 
     void ChangeChannel(){
@@ -140,6 +143,7 @@ public class TvMinigame : Minigame
 
     }
 
+    //Update babycontroller
     public override void EndMinigame()
     {
         Debug.Log("Tv minigame Complete");
