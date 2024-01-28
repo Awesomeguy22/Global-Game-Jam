@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56812b0b09336a4f8568d9253db97e6, type: 3}
   m_Name: FriendDialog
   m_EditorClassIdentifier: 
-  audio: {fileID: 0}
+  audio: {fileID: 8300000, guid: 027c80ac811106c45843e6aeaeed105b, type: 3}
   correctResponses:
   - What baby?
   - I'm so swamped with homework, can't come over

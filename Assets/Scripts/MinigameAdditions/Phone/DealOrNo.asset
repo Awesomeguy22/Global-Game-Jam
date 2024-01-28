@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56812b0b09336a4f8568d9253db97e6, type: 3}
   m_Name: DealOrNo
   m_EditorClassIdentifier: 
-  audio: {fileID: 0}
-  correctResponses: []
-  incorrectResponses: []
+  audio: {fileID: 8300000, guid: 3a76d70356e23aa4999d658520a1ecd2, type: 3}
+  correctResponses:
+  - NO DEAL
+  incorrectResponses:
+  - DEAL
