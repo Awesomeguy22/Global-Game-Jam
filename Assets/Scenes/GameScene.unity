@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!224 &176322440 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1866554500761451231, guid: 379f5be4835615c4482b30aa60eb82aa, type: 3}
+  m_PrefabInstance: {fileID: 1060671629}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &631188014 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8977309831588046785, guid: bdb90d54214bb244facb92afa8ff060b, type: 3}
@@ -176,6 +181,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6741862837013791028, guid: f8e2fa2b98fb9b543a2b8ae4745fc468, type: 3}
+      propertyPath: buttonContainer
+      value: 
+      objectReference: {fileID: 176322440}
     - target: {fileID: 8020846518747778328, guid: f8e2fa2b98fb9b543a2b8ae4745fc468, type: 3}
       propertyPath: m_Name
       value: phone

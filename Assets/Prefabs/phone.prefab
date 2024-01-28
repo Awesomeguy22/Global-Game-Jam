@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4585718034306232297}
   - component: {fileID: 1595835739978529959}
   - component: {fileID: 6741862837013791028}
+  - component: {fileID: 5965786228330489307}
   m_Layer: 0
   m_Name: phone
   m_TagString: Untagged
@@ -216,11 +217,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1818b39f2efd244691a709f9cd918da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alertObj: {fileID: 0}
   ringFx: {fileID: 8300000, guid: 4a651df4dd792cc4a9aa1f0d9f54e840, type: 3}
   dialogs:
   - {fileID: 11400000, guid: 48d760b90e01f504f8a7ed45e9fa3793, type: 2}
   - {fileID: 11400000, guid: 0fbde6e4c8f1d4e43b3037a185a547d4, type: 2}
   - {fileID: 11400000, guid: 4dc52dc950c0173408a1537a6e4caa44, type: 2}
-  buttonFab: {fileID: 0}
   buttonContainer: {fileID: 0}
+--- !u!61 &5965786228330489307
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8020846518747778328}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 12.77, y: 12.8}
+    newSize: {x: 12.77, y: 12.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 12.77, y: 12.8}
+  m_EdgeRadius: 0
