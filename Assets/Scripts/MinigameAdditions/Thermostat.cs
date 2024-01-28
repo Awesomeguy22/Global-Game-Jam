@@ -25,7 +25,7 @@ public class Thermostat : Minigame
 
     public override void ActivateMinigame() {
         // Random number -1 or 1
-        baby.SetInteger("temperature", Random.Range(0, 1) * 2 - 1);
+        baby.SetInteger("temperature", Random.Range(0, 2) * 2 - 1);
     }
 
     public override void StartMinigame() {
