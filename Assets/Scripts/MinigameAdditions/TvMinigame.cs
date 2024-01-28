@@ -34,9 +34,7 @@ public class TvMinigame : Minigame
     int activeChannelIndex = 0;
     int desiredChannelIndex;
 
-    [SerializeField] Interactable interactable; 
-
-    [SerializeField] int points = 1;
+    [SerializeField] Interactable interactable;
 
 
     // Start is called before the first frame update
@@ -146,11 +144,9 @@ public class TvMinigame : Minigame
     //Update babycontroller
     public override void EndMinigame()
     {
+        base.EndMinigame();
         Debug.Log("Tv minigame Complete");
-        _enabled = false;
         desiredChannels[desiredChannelIndex].gameObject.SetActive(false);
-        BabyController babyController = GameObject.FindGameObjectWithTag("GameController").GetComponent<BabyController>();
-        babyController.increaseLaughter(points);
     }
 
     public override void StartMinigame()

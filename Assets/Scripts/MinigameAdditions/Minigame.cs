@@ -5,13 +5,15 @@ using UnityEngine;
 public abstract class Minigame : MonoBehaviour
 {
     protected bool _enabled = false;
-    private GameObject alertObj;
+    private static GameObject alertFab;
+
+    private GameObject alertObject;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        alertObj = Resources.Load<GameObject>("Alert");
+        alertFab = Resources.Load<GameObject>("Alert");
     }
 
     // Update is called once per frame
@@ -26,8 +28,8 @@ public abstract class Minigame : MonoBehaviour
             _enabled = true;
             ActivateMinigame();
             var size = GetComponent<SpriteRenderer>().size;
-            //print(size);
-            Instantiate(alertObj).transform.position = transform.position + new Vector3(0, transform.localScale.y * size.y, 0);
+            alertObject = Instantiate(alertFab);
+            alertObject.transform.position = transform.position + new Vector3(0, transform.localScale.y * size.y, 0);
             return true;
         } else {
             return false;
@@ -45,6 +47,11 @@ public abstract class Minigame : MonoBehaviour
     public abstract void ActivateMinigame();
 
     //
-    public abstract void EndMinigame();
+    public virtual void EndMinigame() {
+        _enabled = false;
+        BabyController babyController = GameObject.FindGameObjectWithTag("GameController").GetComponent<BabyController>();
+        babyController.increaseLaughter(1);
+        Destroy(alertObject);
+    }
 
 }

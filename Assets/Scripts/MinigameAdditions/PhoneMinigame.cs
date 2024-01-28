@@ -37,6 +37,11 @@ public class PhoneMinigame : Minigame
         
     }
 
+    void OnMouseDown() {
+        if (_enabled)
+            StartMinigame();
+    }
+
     public override void ActivateMinigame() {
         audio.clip = ringFx;
         audio.Play();
@@ -68,6 +73,7 @@ public class PhoneMinigame : Minigame
     }
 
     public override void EndMinigame() {
+        base.EndMinigame();
         audio.Stop();
         foreach (Transform child in buttonContainer) {
             Destroy(child.gameObject);
