@@ -4,6 +4,7 @@ using UnityEngine;
 using System.ComponentModel;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 namespace System.Runtime.CompilerServices
 {
@@ -64,7 +65,7 @@ public class PhoneMinigame : Minigame
             option.GetComponentInChildren<TMP_Text>().text = response;
             options.Add(option);
         }
-        foreach (var option in options) {
+        foreach (var option in options.OrderBy(x => Random.value)) {
             option.transform.SetParent(buttonContainer,false);
         }
     }
