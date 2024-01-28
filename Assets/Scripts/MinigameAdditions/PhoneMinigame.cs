@@ -4,6 +4,7 @@ using UnityEngine;
 using System.ComponentModel;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 namespace System.Runtime.CompilerServices
 {
@@ -14,13 +15,14 @@ namespace System.Runtime.CompilerServices
 public class PhoneMinigame : Minigame
 {
     [SerializeField] private AudioClip ringFx;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator phoneAnimator;
     public PhoneDialog[] dialogs;
     public Transform buttonContainer;
 
     private new AudioSource audio;
     private GameObject buttonFab;
     private bool isShowing = false;
+    private Animator playerAnimator;
 
     // Start is called before the first frame update
     void Awake()
@@ -28,14 +30,7 @@ public class PhoneMinigame : Minigame
         audio = GetComponent<AudioSource>();
         TaskController.RegisterMinigame(this);
         buttonFab = Resources.Load<GameObject>("Button");
-        //ActivateMinigame();
-        //StartMinigame();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
     }
 
     void OnMouseDown() {
@@ -46,13 +41,14 @@ public class PhoneMinigame : Minigame
     public override void ActivateMinigame() {
         audio.clip = ringFx;
         audio.Play();
-        animator.SetBool("isRinging", true);
+        phoneAnimator.SetBool("isRinging", true);
     }
 
     public override void StartMinigame() {
         isShowing = true;
         audio.Stop();
-        animator.SetBool("isRinging", false);
+        phoneAnimator.SetBool("isRinging", false);
+        playerAnimator.SetBool("isCalling", true);
         var dialogIdx = Random.Range(0, dialogs.Length);
         var dialog = dialogs[dialogIdx];
         audio.clip = dialog.audio;
@@ -69,7 +65,7 @@ public class PhoneMinigame : Minigame
             option.GetComponentInChildren<TMP_Text>().text = response;
             options.Add(option);
         }
-        foreach (var option in options) {
+        foreach (var option in options.OrderBy(x => Random.value)) {
             option.transform.SetParent(buttonContainer,false);
         }
     }
@@ -78,6 +74,7 @@ public class PhoneMinigame : Minigame
         base.EndMinigame();
         isShowing = false;
         audio.Stop();
+        playerAnimator.SetBool("isCalling", false);
         foreach (Transform child in buttonContainer) {
             Destroy(child.gameObject);
         }

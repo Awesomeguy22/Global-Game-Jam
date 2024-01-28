@@ -304,11 +304,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enabled: 0
   ringFx: {fileID: 8300000, guid: 4a651df4dd792cc4a9aa1f0d9f54e840, type: 3}
-  animator: {fileID: 8080795698085039352}
+  phoneAnimator: {fileID: 8080795698085039352}
   dialogs:
   - {fileID: 11400000, guid: 48d760b90e01f504f8a7ed45e9fa3793, type: 2}
   - {fileID: 11400000, guid: 0fbde6e4c8f1d4e43b3037a185a547d4, type: 2}
   - {fileID: 11400000, guid: 4dc52dc950c0173408a1537a6e4caa44, type: 2}
+  - {fileID: 11400000, guid: ff65deddcb90fbf4982723a94fbc576a, type: 2}
   buttonContainer: {fileID: 0}
 --- !u!61 &5965786228330489307
 BoxCollider2D:
