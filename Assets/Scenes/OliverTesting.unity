@@ -281,7 +281,8 @@ PrefabInstance:
       value: Thermostat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5182098826111624796, guid: dc12fc29717963149b0b79e67e50108b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc12fc29717963149b0b79e67e50108b, type: 3}

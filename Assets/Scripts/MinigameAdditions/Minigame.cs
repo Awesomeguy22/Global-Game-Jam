@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Minigame : MonoBehaviour
 {
-    protected bool _enabled = false;
+    public bool _enabled = false;
     private static GameObject alertFab;
 
     private GameObject alertObject;
@@ -23,11 +23,18 @@ public abstract class Minigame : MonoBehaviour
     }
 
     //return true if minigame can be activated, false otherwise
+    [ContextMenu("RequestMinigame")]
     public bool RequestMinigame() {
         if(!_enabled){
             _enabled = true;
             ActivateMinigame();
-            var size = GetComponent<SpriteRenderer>().size;
+            var size = new Vector2();
+            if (TryGetComponent<SpriteRenderer>(out SpriteRenderer spriteRenderer)){
+                size = spriteRenderer.size;
+            } else {
+                size = new Vector2(1,1);
+            }
+            
             alertObject = Instantiate(alertFab);
             alertObject.transform.position = transform.position + new Vector3(0, transform.localScale.y * size.y, 0);
             return true;

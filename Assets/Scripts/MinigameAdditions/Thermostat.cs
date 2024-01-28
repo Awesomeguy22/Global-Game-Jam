@@ -8,7 +8,7 @@ public class Thermostat : Minigame
     [SerializeField] private Interactable interactable;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         TaskController.RegisterMinigame(this);
     }
@@ -23,6 +23,7 @@ public class Thermostat : Minigame
             EndMinigame();
     }
 
+    //[ContextMenu("ActivateMinigame")]
     public override void ActivateMinigame() {
         // Random number -1 or 1
         baby.SetInteger("temperature", Random.Range(0, 2) * 2 - 1);

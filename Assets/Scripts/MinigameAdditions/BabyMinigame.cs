@@ -21,7 +21,9 @@ public class BabyMinigame : Minigame
     GameObject[] indicators;
     int currentIndex = 0;
 
-    [SerializeField] string currentChar;
+    AudioSource audioSource;
+
+    [SerializeField] Interactable interactable;
 
     [ContextMenu("ActivateMinigame")]
     public override void ActivateMinigame()
@@ -53,11 +55,14 @@ public class BabyMinigame : Minigame
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         inputSequence = new int[sequenceLength];
         indicators = new GameObject[sequenceLength];
         baby = GameObject.FindGameObjectWithTag("Baby").GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        TaskController.RegisterMinigame(this);
+
     }
 
     // Update is called once per frame
@@ -72,8 +77,8 @@ public class BabyMinigame : Minigame
             return;
         }
 
-        //currentChar = "";
-        //Debug.Log(inputSequence[currentIndex]);
+        string currentChar = "";
+        
         switch(inputSequence[currentIndex]){
             case 0:
             currentChar = "W";
@@ -93,15 +98,16 @@ public class BabyMinigame : Minigame
         }
 
         KeyCode currentKeyCode = (KeyCode) System.Enum.Parse(typeof(KeyCode), currentChar);
-        if(Input.GetKeyDown(currentKeyCode)){
+        if(Input.GetKeyDown(currentKeyCode) && interactable.playerIsNear){
             //Player successfully inputted
             //Debug.Log("you hit the right button");
             Destroy(indicators[currentIndex]);
             currentIndex++;
 
             bottleAnimator.SetTrigger("Shaking");
+            //play sound
+            audioSource.Play();
         }
-
 
     }
 

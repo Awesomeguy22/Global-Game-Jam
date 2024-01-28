@@ -50,13 +50,13 @@ MonoBehaviour:
   timer: 180
   currentDifficulty: 1
   difficultylvl0: 10
-  milstone1: 1
+  milstone1: 2
   difficultylvl1: 7
-  milstone2: 2
+  milstone2: 4
   difficultylvl2: 5
-  milstone3: 3
-  difficultylvl3: 4
-  milstone4: 4
+  milstone3: 8
+  difficultylvl3: 3
+  milstone4: 12
   hasWon: 0
   endCountDown: 7.5
   babyfaces:

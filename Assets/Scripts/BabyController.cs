@@ -70,8 +70,8 @@ public class BabyController : MonoBehaviour
         //Display loss message
         //Go to loss scene
         SceneManager.LoadScene(2);
-        TextMeshPro lossText = GameObject.FindGameObjectWithTag("Finish").GetComponent<TextMeshPro>();
-        lossText.text = "You Lost...\n" + message;
+        //TextMeshPro lossText = GameObject.FindGameObjectWithTag("Finish").GetComponent<TextMeshPro>();
+        //lossText.text = "You Lost...\n" + message;
     }
 
     public void increaseLaughter(int increaseBy){
