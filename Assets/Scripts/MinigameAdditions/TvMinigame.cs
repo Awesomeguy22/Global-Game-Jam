@@ -96,7 +96,7 @@ public class TvMinigame : Minigame
     void OnMouseDown(){
         //TODO
         //change the player sprite
-        Debug.Log("Clicked the TV");
+        //Debug.Log("Clicked the TV");
         if(interactable.playerIsNear){
             if(TVStatic.activeSelf){
                 ChangeChannel();

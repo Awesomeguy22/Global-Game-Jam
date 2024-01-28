@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb7aaa5e92f63e42b0189461587529f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enabled: 0
   bottleAnimator: {fileID: 7376912250690051623}
   sequenceLength: 4
   keys:
@@ -59,7 +60,7 @@ MonoBehaviour:
   - {x: 5, y: -0.75, z: 0}
   - {x: 6.5, y: -0.75, z: 0}
   - {x: 8, y: -0.75, z: 0}
-  currentChar: 
+  interactable: {fileID: 7513849662282326008}
 --- !u!82 &6784894296967229607
 AudioSource:
   m_ObjectHideFlags: 0
@@ -336,3 +337,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7009431113680110775, guid: b3ce985e8b7013847b3e22c90c7ab73a, type: 3}
   m_PrefabInstance: {fileID: 6714933180853312334}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7513849662282326008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3852462603619534006, guid: b3ce985e8b7013847b3e22c90c7ab73a, type: 3}
+  m_PrefabInstance: {fileID: 6714933180853312334}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28ff088b9236464bad573712808756f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

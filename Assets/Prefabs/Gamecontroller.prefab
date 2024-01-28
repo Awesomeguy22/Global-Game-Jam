@@ -50,13 +50,13 @@ MonoBehaviour:
   timer: 180
   currentDifficulty: 1
   difficultylvl0: 10
-  milstone1: 2
+  milstone1: 4
   difficultylvl1: 7
-  milstone2: 4
+  milstone2: 8
   difficultylvl2: 5
-  milstone3: 8
+  milstone3: 12
   difficultylvl3: 3
-  milstone4: 12
+  milstone4: 20
   hasWon: 0
   endCountDown: 7.5
   babyfaces:
@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentDifficulty: 1
+  miniGameDuration: 10
   difficultyVariance: 1
 --- !u!82 &6576003478106084669
 AudioSource:
