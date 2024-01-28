@@ -1,14 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Unity.Mathematics;
 using UnityEngine;
 
 public class TaskController : MonoBehaviour
 {
     public float currentDifficulty = 1;
-    float timeTillNextTask;
+    float timeTillNextTask = 3;
 
     [SerializeField] float difficultyVariance = 1.0f;
 
@@ -30,12 +29,16 @@ public class TaskController : MonoBehaviour
         currentDifficulty = babyController.currentDifficulty;
         if (timeTillNextTask < 0){
             int taskToGenerate;
+            /*
             do{
             //pick a task to activate at random
             taskToGenerate = UnityEngine.Random.Range(0,tasks.Count);
-            } while (!tasks[taskToGenerate].RequestMinigame());
+            } while (!tasks[taskToGenerate].RequestMinigame()); 
+            */
             //repeat until an inactive task is found
-
+            taskToGenerate = UnityEngine.Random.Range(0,tasks.Count);
+            tasks[taskToGenerate].RequestMinigame();
+            Debug.Log("Task #" + taskToGenerate + " Generated");
             //Set the time till next task to the difficulty plus some random number for variance
             timeTillNextTask = currentDifficulty + UnityEngine.Random.Range(0,difficultyVariance);
         }

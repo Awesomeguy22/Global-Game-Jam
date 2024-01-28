@@ -26,7 +26,7 @@ public abstract class Minigame : MonoBehaviour
             _enabled = true;
             ActivateMinigame();
             var size = GetComponent<SpriteRenderer>().size;
-            print(size);
+            //print(size);
             Instantiate(alertObj).transform.position = transform.position + new Vector3(0, transform.localScale.y * size.y, 0);
             return true;
         } else {

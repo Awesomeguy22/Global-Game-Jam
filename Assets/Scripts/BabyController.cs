@@ -10,7 +10,7 @@ public class BabyController : MonoBehaviour
     [SerializeField] float laughterMeter = 0;
     //Counting down from 3 minutes
     public float timer = 180;
-    public float currentDifficulty = 1;
+    public float currentDifficulty = 10;
     //Difficulty is measured in time before the next task appears
     [SerializeField]float difficultylvl0 = 10;
     [SerializeField]float milstone1 = 25;
@@ -24,9 +24,12 @@ public class BabyController : MonoBehaviour
 
     public float milstone4 = 100;
 
-    bool countingDown = true;
+    bool countingDown = false;
     [SerializeField] float endCountDown = 10f;
     [SerializeField] GameObject[] babyfaces;
+
+    [SerializeField] GameObject stillBaby;
+    [SerializeField] GameObject dancingBaby;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,8 +40,6 @@ public class BabyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        
         timer -= Time.deltaTime;
         if (timer < 0){
             BabyController.Lose("The Parents came home");
@@ -50,7 +51,8 @@ public class BabyController : MonoBehaviour
         }
 
         if (endCountDown < 0){
-            SceneManager.LoadScene(2);
+            //Go to win Screen
+            SceneManager.LoadScene(1);
         }
     }
 
@@ -60,34 +62,35 @@ public class BabyController : MonoBehaviour
 
         //change scene
         //laugh.mp3
-
+        stillBaby.SetActive(false);
+        dancingBaby.SetActive(true);
         //play cutscene
         //display score
     }
 
     //Tasks can call this when they expire to trigger a loss
-    public static void Lose(String message){
+    public static void Lose(string message){
         Debug.Log("You lost");
         Debug.Log(message);
 
         //Display loss message
         //Go to loss scene
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
         TextMeshPro lossText = GameObject.FindGameObjectWithTag("Finish").GetComponent<TextMeshPro>();
         lossText.text = "You Lost...\n" + message;
     }
 
     public void increaseLaughter(int increaseBy){
         laughterMeter += increaseBy;
-        if (laughterMeter > milstone4){
+        if (laughterMeter >= milstone4){
             Win();
-        } else if (laughterMeter > milstone3) {
+        } else if (laughterMeter >= milstone3) {
             currentDifficulty = difficultylvl3;
             babyfaces[3].SetActive(true);
-        } else if (laughterMeter > milstone2) {
+        } else if (laughterMeter >= milstone2) {
             currentDifficulty = difficultylvl2;
             babyfaces[2].SetActive(true);
-        } else if (laughterMeter > milstone1) {
+        } else if (laughterMeter >= milstone1) {
             currentDifficulty = difficultylvl1;
             babyfaces[1].SetActive(true);
         }

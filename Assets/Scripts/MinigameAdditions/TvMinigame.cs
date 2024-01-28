@@ -80,6 +80,8 @@ public class TvMinigame : Minigame
 
         if (succeedTimer < 0){
             EndMinigame();
+            //reset the timer
+            succeedTimer = maintainChannelTime;
         }
 
         //if on the right channel
@@ -127,7 +129,6 @@ public class TvMinigame : Minigame
         foreach (SpriteRenderer channel in channels){
             channel.gameObject.SetActive(false);
         }
-        channels[activeChannelIndex].gameObject.SetActive(true);
         do {
             desiredChannelIndex = Random.Range(0,channels.Length);
         } while (desiredChannelIndex == activeChannelIndex);
