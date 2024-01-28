@@ -47,13 +47,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laughterMeter: 0
-  timer: 180
   currentDifficulty: 1
-  difficultylvl0: 10
+  difficultylvl0: 7
   milstone1: 4
-  difficultylvl1: 7
+  difficultylvl1: 5
   milstone2: 8
-  difficultylvl2: 5
+  difficultylvl2: 4
   milstone3: 12
   difficultylvl3: 3
   milstone4: 20
@@ -78,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentDifficulty: 1
   miniGameDuration: 10
-  difficultyVariance: 1
+  difficultyVariance: 0
 --- !u!82 &6576003478106084669
 AudioSource:
   m_ObjectHideFlags: 0

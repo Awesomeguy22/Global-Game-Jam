@@ -53,7 +53,7 @@ public class TaskController : MonoBehaviour
             tasks[taskToGenerate].RequestMinigame();
             minigameTimers[taskToGenerate] = miniGameDuration;
             lastTaskGenerated = taskToGenerate;
-            Debug.Log("Task #" + taskToGenerate + " Generated");
+            //Debug.Log("Task #" + taskToGenerate + " Generated");
             
             //Set the time till next task to the difficulty plus some random number for variance
             timeTillNextTask = currentDifficulty + UnityEngine.Random.Range(0,difficultyVariance);

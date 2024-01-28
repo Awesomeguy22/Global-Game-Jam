@@ -28,7 +28,7 @@ public class BabyMinigame : Minigame
     [ContextMenu("ActivateMinigame")]
     public override void ActivateMinigame()
     {
-        Debug.Log("Baby Task Starting");
+        //Debug.Log("Baby Task Starting");
         _enabled = true;
         
         //generate input sequence

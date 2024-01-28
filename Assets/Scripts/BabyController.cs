@@ -9,7 +9,7 @@ public class BabyController : MonoBehaviour
 
     [SerializeField] float laughterMeter = 0;
     //Counting down from 3 minutes
-    public float timer = 180;
+    //public float timer = 180;
     public float currentDifficulty = 10;
     //Difficulty is measured in time before the next task appears
     [SerializeField]float difficultylvl0 = 10;
@@ -31,18 +31,18 @@ public class BabyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
         currentDifficulty = difficultylvl0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
+        /*timer -= Time.deltaTime;
         if (timer < 0){
             BabyController.Lose("The Parents came home");
             gameObject.SetActive(false);
-        } 
+        }*/
 
         if (hasWon){
             endCountDown -= Time.deltaTime;
@@ -50,16 +50,19 @@ public class BabyController : MonoBehaviour
 
         if (endCountDown < 0){
             //Go to win Screen
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
+            gameObject.SetActive(false);
         }
     }
 
+    [ContextMenu("Win")]
     void Win(){
         Debug.Log("You Win!");
+        //Delayed win trigger
         hasWon = true;
 
         // TODO: shouldn't the babyController be attached to the baby object?
-        GameObject.FindGameObjectWithTag("Baby").GetComponent<Animator>().Play("Laugh");
+        GameObject.FindGameObjectWithTag("Baby").GetComponent<Animator>().Play("Laugh2");
     }
 
     //Tasks can call this when they expire to trigger a loss
@@ -69,7 +72,7 @@ public class BabyController : MonoBehaviour
 
         //Display loss message
         //Go to loss scene
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
         //TextMeshPro lossText = GameObject.FindGameObjectWithTag("Finish").GetComponent<TextMeshPro>();
         //lossText.text = "You Lost...\n" + message;
     }
