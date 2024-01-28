@@ -15,23 +15,20 @@ public class PitchVisualizer : MonoBehaviour
 
     public float estimateRate = 30;
 
-    void Start()
-    {
-        // 一定間隔で呼び出す（Updateだと速すぎる）
+    void Start() {
+        // Call at regular intervals (Update is too fast)
         InvokeRepeating(nameof(UpdateVisualizer), 0, 1.0f / estimateRate);
     }
 
-    void UpdateVisualizer()
-    {
-        // 基本周波数を推定
+    void UpdateVisualizer() {
+        // Estimate the fundamental frequency
         var frequency = estimator.Estimate(audioSource);
 
-        // SRHスコア
+        // SRH score
         var srh = estimator.SRH;
         var numPoints = srh.Count;
         var positions = new Vector3[numPoints];
-        for (int i = 0; i < numPoints; i++)
-        {
+        for (int i = 0; i < numPoints; i++) {
             var position = (float)i / numPoints - 0.5f;
             var value = srh[i] * 0.005f;
             positions[i].Set(position, value, 0);
@@ -39,14 +36,11 @@ public class PitchVisualizer : MonoBehaviour
         lineSRH.positionCount = numPoints;
         lineSRH.SetPositions(positions);
 
-        // 基本周波数
-        if (float.IsNaN(frequency))
-        {
-            // 検出されなかったので非表示
+        // fundamental frequency
+        if (float.IsNaN(frequency)) {
+            // Hide because it was not detected
             lineFrequency.positionCount = 0;
-        }
-        else
-        {
+        } else {
             var min = estimator.frequencyMin;
             var max = estimator.frequencyMax;
             var position = (frequency - min) / (max - min) - 0.5f;
@@ -59,18 +53,17 @@ public class PitchVisualizer : MonoBehaviour
             textFrequency.text = string.Format("{0}\n{1:0.0} Hz", GetNameFromFrequency(frequency), frequency);
         }
 
-        // 下限・上限周波数
+        // Lower limit/upper limit frequency
         textMin.text = string.Format("{0} Hz", estimator.frequencyMin);
         textMax.text = string.Format("{0} Hz", estimator.frequencyMax);
     }
 
-    // 周波数 → 音名
-    string GetNameFromFrequency(float frequency)
-    {
+    // Frequency → note name
+    string GetNameFromFrequency(float frequency) {
         var noteNumber = Mathf.RoundToInt(12 * Mathf.Log(frequency / 440) / Mathf.Log(2) + 69);
         string[] names = {
-            "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"
-        };
+             "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"
+         };
         return names[noteNumber % 12];
     }
 
