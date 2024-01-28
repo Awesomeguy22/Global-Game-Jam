@@ -15,17 +15,18 @@ public class PhoneMinigame : Minigame
 {
     [SerializeField] private AudioClip ringFx;
     public PhoneDialog[] dialogs;
-    public GameObject buttonFab;
     public Transform buttonContainer;
 
     private new AudioSource audio;
     private int selectedDialog;
+    private GameObject buttonFab;
 
     // Start is called before the first frame update
     void Awake()
     {
         audio = GetComponent<AudioSource>();
         TaskController.RegisterMinigame(this);
+        buttonFab = Resources.Load<GameObject>("Button");
         //ActivateMinigame();
         //StartMinigame();
     }
