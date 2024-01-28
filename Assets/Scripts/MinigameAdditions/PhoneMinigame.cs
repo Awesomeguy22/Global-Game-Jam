@@ -20,6 +20,7 @@ public class PhoneMinigame : Minigame
 
     private new AudioSource audio;
     private GameObject buttonFab;
+    private bool isShowing = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -38,7 +39,7 @@ public class PhoneMinigame : Minigame
     }
 
     void OnMouseDown() {
-        if (_enabled)
+        if (_enabled && !isShowing)
             StartMinigame();
     }
 
@@ -49,6 +50,7 @@ public class PhoneMinigame : Minigame
     }
 
     public override void StartMinigame() {
+        isShowing = true;
         audio.Stop();
         animator.SetBool("isRinging", false);
         var dialogIdx = Random.Range(0, dialogs.Length);
@@ -74,6 +76,7 @@ public class PhoneMinigame : Minigame
 
     public override void EndMinigame() {
         base.EndMinigame();
+        isShowing = false;
         audio.Stop();
         foreach (Transform child in buttonContainer) {
             Destroy(child.gameObject);
