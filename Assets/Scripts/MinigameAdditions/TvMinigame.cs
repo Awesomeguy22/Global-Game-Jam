@@ -36,11 +36,15 @@ public class TvMinigame : Minigame
 
     [SerializeField] Interactable interactable;
 
+    private Animator playerAnimator;
+
 
     // Start is called before the first frame update
     void Awake()
     {
         TaskController.RegisterMinigame(this);
+
+        playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
         
         //getcomponentsinChildren also gets the root object, so I need to filter it out
         channels = channelHolder.GetComponentsInChildren<SpriteRenderer>();
@@ -98,6 +102,7 @@ public class TvMinigame : Minigame
         //change the player sprite
         //Debug.Log("Clicked the TV");
         if(interactable.playerIsNear){
+            playerAnimator.Play("remote");
             if(TVStatic.activeSelf){
                 ChangeChannel();
                 TVStatic.SetActive(false);
