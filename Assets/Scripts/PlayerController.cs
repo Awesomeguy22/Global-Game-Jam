@@ -30,22 +30,19 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public float walkSpeed = 0.5f;
 
-    [SerializeField] GameObject idlePose;
-    [SerializeField] GameObject runningPose;
+    private Animator animator;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Fixed update is called 50 times per second
-    void FixedUpdate()
+    void Update()
     {
         if (canWalk){
             Move();
-
-            HandleAnimation();
         }
 
     }
@@ -56,11 +53,9 @@ public class PlayerController : MonoBehaviour
         if (math.abs(walkDir) > 0.1f){
             // if walking dir is negative, we are walking right
             isFacingRight = walkDir < 0;
-            idlePose.SetActive(false);
-            runningPose.SetActive(true);
+            animator.SetBool("isMoving", true);
         } else {
-            idlePose.SetActive(true);
-            runningPose.SetActive(false);
+            animator.SetBool("isMoving", false);
         }
 
         //past left wall and trying to walk left
@@ -73,15 +68,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        //divide by 50 for 50 frames per second
-        transform.Translate(Vector3.right * walkDir * walkSpeed / 50);
-    }
-
-    void HandleAnimation(){
-        if (isFacingRight) {
-            runningPose.transform.rotation = Quaternion.Euler(0,180,0); 
-        } else {
-            runningPose.transform.rotation = Quaternion.Euler(0,0,0);
-        }
+        transform.rotation = isFacingRight ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+        transform.Translate(walkSpeed * math.abs(walkDir) * Time.deltaTime * Vector3.right);
     }
 }

@@ -5,13 +5,13 @@ using UnityEngine;
 public abstract class Minigame : MonoBehaviour
 {
     protected bool _enabled = false;
-    public GameObject alertObj;
+    private GameObject alertObj;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        alertObj = Resources.Load<GameObject>("Alert");
     }
 
     // Update is called once per frame
