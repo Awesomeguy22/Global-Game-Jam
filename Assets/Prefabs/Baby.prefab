@@ -48,6 +48,7 @@ MonoBehaviour:
   laughterMeter: 0
   timer: 180
   currentDifficulty: 1
+  difficultylvl0: 10
   milstone1: 25
   difficultylvl1: 2
   milstone2: 50
@@ -55,6 +56,11 @@ MonoBehaviour:
   milstone3: 75
   difficultylvl3: 3.5
   milstone4: 100
+  babyfaces:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &8977309831588046785
 GameObject:
   m_ObjectHideFlags: 0

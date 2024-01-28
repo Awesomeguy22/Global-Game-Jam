@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class BabyController : MonoBehaviour
 {
 
@@ -22,9 +23,14 @@ public class BabyController : MonoBehaviour
     [SerializeField]float difficultylvl3 = 4f;
 
     public float milstone4 = 100;
+
+    bool countingDown = true;
+    [SerializeField]float endCountDown = 3.0f;
+    [SerializeField] GameObject[] babyfaces;
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this);
         currentDifficulty = difficultylvl0;
     }
 
@@ -32,15 +38,24 @@ public class BabyController : MonoBehaviour
     void Update()
     {
 
-
+        
         timer -= Time.deltaTime;
         if (timer < 0){
-            BabyController.Lose("The Parents came home (global timer ran out)");
+            BabyController.Lose("The Parents came home");
+        } 
+
+        if (countingDown){
+            endCountDown -= Time.deltaTime;
+        }
+
+        if (endCountDown < 0){
+            SceneManager.LoadScene(2);
         }
     }
 
     void Win(){
         Debug.Log("You Win!");
+        
         //change scene
         //laugh.mp3
         //play cutscene
@@ -51,8 +66,12 @@ public class BabyController : MonoBehaviour
     public static void Lose(String message){
         Debug.Log("You lost");
         Debug.Log(message);
+
         //Display loss message
-        //restart current scene
+        //Go to loss scene
+        SceneManager.LoadScene(1);
+        TextMeshPro lossText = GameObject.FindGameObjectWithTag("Finish").GetComponent<TextMeshPro>();
+        lossText.text = "You Lost...\n" + message;
     }
 
     public void increaseLaughter(int increaseBy){
@@ -61,11 +80,13 @@ public class BabyController : MonoBehaviour
             Win();
         } else if (laughterMeter > milstone3) {
             currentDifficulty = difficultylvl3;
+            babyfaces[3].SetActive(true);
         } else if (laughterMeter > milstone2) {
             currentDifficulty = difficultylvl2;
-
+            babyfaces[2].SetActive(true);
         } else if (laughterMeter > milstone1) {
             currentDifficulty = difficultylvl1;
+            babyfaces[1].SetActive(true);
         }
     }
 }

@@ -30,10 +30,8 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public float walkSpeed = 0.5f;
 
-    /// <summary>
-    /// Change later when proper animation
-    /// </summary>
-    [SerializeField] Transform graphics;
+    [SerializeField] GameObject idlePose;
+    [SerializeField] GameObject runningPose;
     
     // Start is called before the first frame update
     void Start()
@@ -54,9 +52,15 @@ public class PlayerController : MonoBehaviour
 
     void Move(){
         float walkDir = Input.GetAxis("Horizontal");
+        //if walking
         if (math.abs(walkDir) > 0.1f){
             // if walking dir is negative, we are walking right
             isFacingRight = walkDir < 0;
+            idlePose.SetActive(false);
+            runningPose.SetActive(true);
+        } else {
+            idlePose.SetActive(true);
+            runningPose.SetActive(false);
         }
 
         //past left wall and trying to walk left
@@ -75,9 +79,9 @@ public class PlayerController : MonoBehaviour
 
     void HandleAnimation(){
         if (isFacingRight) {
-            graphics.rotation = Quaternion.Euler(0,0,0); 
+            runningPose.transform.rotation = Quaternion.Euler(0,180,0); 
         } else {
-            graphics.rotation = Quaternion.Euler(0,180,0);
+            runningPose.transform.rotation = Quaternion.Euler(0,0,0);
         }
     }
 }

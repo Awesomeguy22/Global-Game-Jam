@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] GameObject buttonprompt;
+    //[SerializeField] GameObject buttonprompt;
     
     //The minigame object will activate when interacted with
     public Minigame minigame;
 
     public bool playingMinigame = false;
-    bool playerIsNear = false;
+    public bool playerIsNear = false;
 
     PlayerController playerController;
     void Start(){
@@ -21,6 +21,7 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (!playingMinigame){
             buttonprompt.SetActive(playerIsNear);
         }
@@ -31,6 +32,7 @@ public class Interactable : MonoBehaviour
             playerController.canWalk = false;
             minigame.StartMinigame();
         }
+        */
 
     }
 
