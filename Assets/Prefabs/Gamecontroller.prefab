@@ -51,20 +51,19 @@ MonoBehaviour:
   currentDifficulty: 1
   difficultylvl0: 10
   milstone1: 1
-  difficultylvl1: 2
+  difficultylvl1: 7
   milstone2: 2
-  difficultylvl2: 3
+  difficultylvl2: 5
   milstone3: 3
-  difficultylvl3: 3.5
+  difficultylvl3: 4
   milstone4: 4
+  hasWon: 0
   endCountDown: 7.5
   babyfaces:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  stillBaby: {fileID: 0}
-  dancingBaby: {fileID: 0}
 --- !u!114 &1876857684606031038
 MonoBehaviour:
   m_ObjectHideFlags: 0

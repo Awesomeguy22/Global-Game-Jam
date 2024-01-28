@@ -9,6 +9,7 @@ public class TaskController : MonoBehaviour
     public float currentDifficulty = 1;
     float timeTillNextTask = 3;
 
+    
     [SerializeField] float difficultyVariance = 1.0f;
 
     public static List<Minigame> tasks = new();
@@ -27,7 +28,7 @@ public class TaskController : MonoBehaviour
     void Update()
     {
         currentDifficulty = babyController.currentDifficulty;
-        if (timeTillNextTask < 0){
+        if (timeTillNextTask < 0 && !babyController.hasWon){
             int taskToGenerate;
             /*
             do{

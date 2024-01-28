@@ -24,7 +24,7 @@ public class BabyController : MonoBehaviour
 
     public float milstone4 = 100;
 
-    bool countingDown = false;
+    public bool hasWon = false;
     [SerializeField] float endCountDown = 10f;
     [SerializeField] GameObject[] babyfaces;
 
@@ -44,7 +44,7 @@ public class BabyController : MonoBehaviour
             gameObject.SetActive(false);
         } 
 
-        if (countingDown){
+        if (hasWon){
             endCountDown -= Time.deltaTime;
         }
 
@@ -56,7 +56,7 @@ public class BabyController : MonoBehaviour
 
     void Win(){
         Debug.Log("You Win!");
-        countingDown = true;
+        hasWon = true;
 
         // TODO: shouldn't the babyController be attached to the baby object?
         GameObject.FindGameObjectWithTag("Baby").GetComponent<Animator>().Play("Laugh");

@@ -68,7 +68,7 @@ public class PhoneMinigame : Minigame
             options.Add(option);
         }
         foreach (var option in options) {
-            option.transform.parent = buttonContainer;
+            option.transform.SetParent(buttonContainer,false);
         }
     }
 

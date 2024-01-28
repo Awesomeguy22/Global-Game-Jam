@@ -143,7 +143,6 @@ MonoBehaviour:
   desiredChannelHolder: {fileID: 4560532734409463956}
   TVStatic: {fileID: 6591637134406251114}
   interactable: {fileID: 9150528773201626017}
-  points: 1
 --- !u!61 &6070011775073575959
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -660,7 +659,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7000762815353845341, guid: 8cac384faf1854c40a141221cd007230, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -792,7 +792,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3370840735506020353, guid: 1f07d0918085e9d4190c22492908b91c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -956,7 +957,8 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: fb066b9582a64c840a8392dd87ef3311, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6990505721418035313, guid: a8e31c229633f38439278d448d75b9d5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1034,7 +1036,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6990505721418035313, guid: a8e31c229633f38439278d448d75b9d5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

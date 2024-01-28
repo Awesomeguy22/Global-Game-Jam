@@ -96,7 +96,7 @@ public class TvMinigame : Minigame
     void OnMouseDown(){
         //TODO
         //change the player sprite
-        Debug.Log("Clicked the TV");
+        //Debug.Log("Clicked the TV");
         if(interactable.playerIsNear){
             if(TVStatic.activeSelf){
                 ChangeChannel();
@@ -145,7 +145,7 @@ public class TvMinigame : Minigame
     public override void EndMinigame()
     {
         base.EndMinigame();
-        Debug.Log("Tv minigame Complete");
+        //Debug.Log("Tv minigame Complete");
         desiredChannels[desiredChannelIndex].gameObject.SetActive(false);
     }
 
