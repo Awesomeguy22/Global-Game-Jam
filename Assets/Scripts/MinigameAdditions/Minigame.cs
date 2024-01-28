@@ -35,9 +35,11 @@ public abstract class Minigame : MonoBehaviour
                 //only for baby minigame which has no sprite
                 size = new Vector2(1,4.2f);
             }
-            
-            alertObject = Instantiate(alertFab);
-            alertObject.transform.position = transform.position + new Vector3(0, transform.localScale.y * size.y, 0);
+            if (alertFab != null){
+                alertObject = Instantiate(alertFab);
+                alertObject.transform.position = transform.position + new Vector3(0, transform.localScale.y * size.y, 0);
+            }
+
             return true;
         } else {
             return false;
