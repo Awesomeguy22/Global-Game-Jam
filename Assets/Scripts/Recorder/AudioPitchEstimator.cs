@@ -2,31 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Fundamental frequency estimation using SRH (Summation of Residual Harmonics)
+// SRH (Summation of Residual Harmonics) による基本周波数推定
 // T. Drugman and A. Alwan: "Joint Robust Voicing Detection and Pitch Estimation Based on Residual Harmonics", Interspeech'11, 2011.
 
 public class AudioPitchEstimator : MonoBehaviour
 {
-    [Tooltip("Minimum frequency [Hz]")]
+    [Tooltip("最低周波数 [Hz]")]
     [Range(40, 150)]
     public int frequencyMin = 40;
 
-    [Tooltip("Highest frequency [Hz]")]
+    [Tooltip("最高周波数 [Hz]")]
     [Range(300, 1200)]
     public int frequencyMax = 600;
 
-    [Tooltip("Number of overtones used for estimation")]
+    [Tooltip("推定に利用する倍音の個数")]
     [Range(1, 8)]
     public int harmonicsToUse = 5;
 
-    [Tooltip("Spectrum moving average bandwidth [Hz]\nThe larger the width, the smoother it is, but the accuracy is lower.")]
+    [Tooltip("スペクトルの移動平均バンド幅 [Hz]\n幅が大きいほど滑らかになりますが、精度が下がります")]
     public float smoothingWidth = 500;
 
-    [Tooltip("Threshold for voiced sound detection\nThe higher the value, the more severe the judgment")]
+    [Tooltip("有声音判定のしきい値\n大きな値ほど判定が厳しくなります")]
     public float thresholdSRH = 7;
 
     const int spectrumSize = 1024;
-    const int outputResolution = 200; // Number of elements on the SRH frequency axis (reducing it will reduce the calculation load)
+    const int outputResolution = 200; // SRHの周波数軸の要素数（小さくすると計算負荷が下がる）
     float[] spectrum = new float[spectrumSize];
     float[] specRaw = new float[spectrumSize];
     float[] specCum = new float[spectrumSize];
@@ -36,78 +36,86 @@ public class AudioPitchEstimator : MonoBehaviour
     public List<float> SRH => new List<float>(srh);
 
     /// <summary>
-    /// Estimate the fundamental frequency
+    /// 基本周波数を推定します
     /// </summary>
-    /// <param name="audioSource">Input audio source</param>
-    /// <returns>Fundamental frequency [Hz] (float.NaN when absent)</returns>
-    public float Estimate(AudioSource audioSource) {
+    /// <param name="audioSource">入力音源</param>
+    /// <returns>基本周波数[Hz] (存在しないときfloat.NaN)</returns>
+    public float Estimate(AudioSource audioSource)
+    {
         var nyquistFreq = AudioSettings.outputSampleRate / 2.0f;
 
-        // get audio spectrum
+        // オーディオスペクトルを取得
         if (!audioSource.isPlaying) return float.NaN;
         audioSource.GetSpectrumData(spectrum, 0, FFTWindow.Hanning);
 
-        // Calculate the logarithm of the amplitude spectrum
-        // All subsequent spectra are treated as logarithmic amplitudes (this differs from the original paper)
-        for (int i = 0; i < spectrumSize; i++) {
-            // When the amplitude is zero, it becomes -∞, so add a small value
+        // 振幅スペクトルの対数を計算
+        // 以降のスペクトルはすべて対数振幅で扱う（ここは元論文と異なる）
+        for (int i = 0; i < spectrumSize; i++)
+        {
+            // 振幅ゼロのとき-∞になってしまうので小さな値を足しておく
             specRaw[i] = Mathf.Log(spectrum[i] + 1e-9f);
         }
 
-        // Cumulative sum of spectra (to be used later)
+        // スペクトルの累積和（あとで使う）
         specCum[0] = 0;
-        for (int i = 1; i < spectrumSize; i++) {
+        for (int i = 1; i < spectrumSize; i++)
+        {
             specCum[i] = specCum[i - 1] + specRaw[i];
         }
 
-        // Calculate the residual spectrum
+        // 残差スペクトルを計算
         var halfRange = Mathf.RoundToInt((smoothingWidth / 2) / nyquistFreq * spectrumSize);
-        for (int i = 0; i < spectrumSize; i++) {
-            // Smooth the spectrum (moving average using cumulative sum)
+        for (int i = 0; i < spectrumSize; i++)
+        {
+            // スペクトルを滑らかに（累積和を使って移動平均）
             var indexUpper = Mathf.Min(i + halfRange, spectrumSize - 1);
             var indexLower = Mathf.Max(i - halfRange + 1, 0);
             var upper = specCum[indexUpper];
             var lower = specCum[indexLower];
             var smoothed = (upper - lower) / (indexUpper - indexLower);
 
-            // remove smooth component from original spectrum
+            // 元のスペクトルから滑らかな成分を除去
             specRes[i] = specRaw[i] - smoothed;
         }
 
-        // Calculate the SRH (Summation of Residual Harmonics) score
+        // SRH (Summation of Residual Harmonics) のスコアを計算
         float bestFreq = 0, bestSRH = 0;
-        for (int i = 0; i < outputResolution; i++) {
+        for (int i = 0; i < outputResolution; i++)
+        {
             var currentFreq = (float)i / (outputResolution - 1) * (frequencyMax - frequencyMin) + frequencyMin;
 
-            // Calculate the SRH score at the current frequency: Equation (1) from the paper
+            // 現在の周波数におけるSRHのスコアを計算: 論文の式(1)
             var currentSRH = GetSpectrumAmplitude(specRes, currentFreq, nyquistFreq);
-            for (int h = 2; h <= harmonicsToUse; h++) {
-                // At h times the frequency, the stronger the signal the better
+            for (int h = 2; h <= harmonicsToUse; h++)
+            {
+                // h倍の周波数では、信号が強いほど良い
                 currentSRH += GetSpectrumAmplitude(specRes, currentFreq * h, nyquistFreq);
 
-                // At frequencies between h-1 times and h times, the stronger the signal, the worse it is
+                // h-1倍 と h倍 の中間の周波数では、信号が強いほど悪い
                 currentSRH -= GetSpectrumAmplitude(specRes, currentFreq * (h - 0.5f), nyquistFreq);
             }
             srh[i] = currentSRH;
 
-            //Record the frequency with the highest score
-            if (currentSRH > bestSRH) {
+            // スコアが最も大きい周波数を記録
+            if (currentSRH > bestSRH)
+            {
                 bestFreq = currentFreq;
                 bestSRH = currentSRH;
             }
         }
 
-        // SRH score is less than the threshold → It is assumed that there is no clear fundamental frequency
+        // SRHのスコアが閾値に満たない → 明確な基本周波数が存在しないとみなす
         if (bestSRH < thresholdSRH) return float.NaN;
 
         return bestFreq;
     }
 
-    // Get the amplitude at frequency[Hz] from the spectrum data
-    float GetSpectrumAmplitude(float[] spec, float frequency, float nyquistFreq) {
+    // スペクトルデータからfrequency[Hz]における振幅を取得する
+    float GetSpectrumAmplitude(float[] spec, float frequency, float nyquistFreq)
+    {
         var position = frequency / nyquistFreq * spec.Length;
         var index0 = (int)position;
-        var index1 = index0 + 1; // Skip array bounds checking
+        var index1 = index0 + 1; // 配列の境界チェックは省略
         var delta = position - index0;
         return (1 - delta) * spec[index0] + delta * spec[index1];
     }
