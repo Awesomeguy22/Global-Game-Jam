@@ -216,14 +216,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1818b39f2efd244691a709f9cd918da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSources:
-  - {fileID: 8300000, guid: f009c9d6f66364748a06a510d254d747, type: 3}
-  - {fileID: 0}
-  correctResponses:
-  - same. You can talk to me if you're feeling sad and lonely
-  - Your child is perfectly fine
-  incorrectResponses:
-  - sorry, not interested;I'm a small business owner;
-  - Your child is literally on fire;What baby?
-  responses: []
-  correctResponseIndex: 
+  alertObj: {fileID: 0}
+  ringFx: {fileID: 8300000, guid: 4a651df4dd792cc4a9aa1f0d9f54e840, type: 3}
+  dialogs:
+  - {fileID: 11400000, guid: 48d760b90e01f504f8a7ed45e9fa3793, type: 2}
+  - {fileID: 11400000, guid: 0fbde6e4c8f1d4e43b3037a185a547d4, type: 2}
+  - {fileID: 11400000, guid: 4dc52dc950c0173408a1537a6e4caa44, type: 2}
+  buttonFab: {fileID: 0}
+  buttonContainer: {fileID: 0}
