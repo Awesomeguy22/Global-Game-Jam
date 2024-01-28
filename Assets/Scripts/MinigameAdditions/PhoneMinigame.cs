@@ -21,11 +21,11 @@ public class PhoneMinigame : Minigame
     private int selectedDialog;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         audio = GetComponent<AudioSource>();
         TaskController.RegisterMinigame(this);
-        ActivateMinigame();
+        //ActivateMinigame();
     }
 
     // Update is called once per frame

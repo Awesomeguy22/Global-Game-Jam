@@ -36,11 +36,14 @@ public class TvMinigame : Minigame
 
     [SerializeField] Interactable interactable; 
 
+    [SerializeField] int points = 1;
+
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-
+        TaskController.RegisterMinigame(this);
+        
         //getcomponentsinChildren also gets the root object, so I need to filter it out
         channels = channelHolder.GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer spriteRenderer in channels){
@@ -141,7 +144,8 @@ public class TvMinigame : Minigame
         Debug.Log("Tv minigame Complete");
         _enabled = false;
         desiredChannels[desiredChannelIndex].gameObject.SetActive(false);
-
+        BabyController babyController = GameObject.FindGameObjectWithTag("GameController").GetComponent<BabyController>();
+        babyController.increaseLaughter(points);
     }
 
     public override void StartMinigame()

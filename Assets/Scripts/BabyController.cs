@@ -25,7 +25,7 @@ public class BabyController : MonoBehaviour
     public float milstone4 = 100;
 
     bool countingDown = true;
-    [SerializeField]float endCountDown = 3.0f;
+    [SerializeField] float endCountDown = 10f;
     [SerializeField] GameObject[] babyfaces;
     // Start is called before the first frame update
     void Start()
@@ -42,6 +42,7 @@ public class BabyController : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer < 0){
             BabyController.Lose("The Parents came home");
+            gameObject.SetActive(false);
         } 
 
         if (countingDown){
@@ -55,9 +56,11 @@ public class BabyController : MonoBehaviour
 
     void Win(){
         Debug.Log("You Win!");
-        
+        countingDown = true;
+
         //change scene
         //laugh.mp3
+
         //play cutscene
         //display score
     }

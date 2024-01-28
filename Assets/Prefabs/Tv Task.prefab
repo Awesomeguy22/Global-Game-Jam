@@ -141,6 +141,7 @@ MonoBehaviour:
   channelHolder: {fileID: 4340924644112354433}
   desiredChannelHolder: {fileID: 4560532734409463956}
   TVStatic: {fileID: 6591637134406251114}
+  interactable: {fileID: 9150528773201626017}
 --- !u!61 &6070011775073575959
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -246,7 +247,7 @@ Transform:
   m_GameObject: {fileID: 4560532734409463956}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: 1.84, z: -0.081394}
+  m_LocalPosition: {x: 0, y: 2.05, z: 0}
   m_LocalScale: {x: 0.67441523, y: 0.67441523, z: 0.67441523}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1067,6 +1068,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7009431113680110775, guid: b3ce985e8b7013847b3e22c90c7ab73a, type: 3}
   m_PrefabInstance: {fileID: 5443593161929950999}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9150528773201626017 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3852462603619534006, guid: b3ce985e8b7013847b3e22c90c7ab73a, type: 3}
+  m_PrefabInstance: {fileID: 5443593161929950999}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28ff088b9236464bad573712808756f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5447655064786102849
 PrefabInstance:
   m_ObjectHideFlags: 0
