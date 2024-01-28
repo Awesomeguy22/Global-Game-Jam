@@ -14,11 +14,11 @@ namespace System.Runtime.CompilerServices
 public class PhoneMinigame : Minigame
 {
     [SerializeField] private AudioClip ringFx;
+    [SerializeField] private Animator animator;
     public PhoneDialog[] dialogs;
     public Transform buttonContainer;
 
     private new AudioSource audio;
-    private int selectedDialog;
     private GameObject buttonFab;
 
     // Start is called before the first frame update
@@ -45,12 +45,12 @@ public class PhoneMinigame : Minigame
     public override void ActivateMinigame() {
         audio.clip = ringFx;
         audio.Play();
-        GetComponent<Animator>().SetBool("isRinging", true);
+        animator.SetBool("isRinging", true);
     }
 
     public override void StartMinigame() {
         audio.Stop();
-        GetComponent<Animator>().SetBool("isRinging", false);
+        animator.SetBool("isRinging", false);
         var dialogIdx = Random.Range(0, dialogs.Length);
         var dialog = dialogs[dialogIdx];
         audio.clip = dialog.audio;
