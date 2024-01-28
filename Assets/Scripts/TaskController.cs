@@ -27,7 +27,9 @@ public class TaskController : MonoBehaviour
     public static void RegisterMinigame(Minigame minigameController) {
         tasks.Add(minigameController);
         minigameTimers.Add(100);
+        Debug.Log("added " + minigameController.gameObject.name);
     }
+
 
     // Update is called once per frame
     void Update()
@@ -50,9 +52,11 @@ public class TaskController : MonoBehaviour
                 taskToGenerate = UnityEngine.Random.Range(0,tasks.Count);
             } while(taskToGenerate == lastTaskGenerated);
             
-            tasks[taskToGenerate].RequestMinigame();
-            minigameTimers[taskToGenerate] = miniGameDuration;
-            lastTaskGenerated = taskToGenerate;
+            if (tasks[taskToGenerate].RequestMinigame()){
+                minigameTimers[taskToGenerate] = miniGameDuration;
+                lastTaskGenerated = taskToGenerate;
+            }
+
             //Debug.Log("Task #" + taskToGenerate + " Generated");
             
             //Set the time till next task to the difficulty plus some random number for variance

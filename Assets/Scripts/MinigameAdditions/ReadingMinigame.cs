@@ -10,6 +10,7 @@ public class ReadingMinigame : Minigame
     string currentChar;
     [SerializeField]int inputIndex;
 
+    //[SerializeField]GameObject alert;
     Animator baby;
 
     [SerializeField] Interactable interactable;
@@ -23,6 +24,7 @@ public class ReadingMinigame : Minigame
 
     public override void ActivateMinigame()
     {
+        //alert.SetActive(true);
         inputIndex = 0;
         currentChar = "";
         promptIndex = Random.Range(0,prompts.Length);
@@ -58,12 +60,13 @@ public class ReadingMinigame : Minigame
     public override void EndMinigame()
     {
         inputIndex = 0;
+        //alert.SetActive(true);
         base.EndMinigame();
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        TaskController.RegisterMinigame(this);
     }
 
     // Update is called once per frame
